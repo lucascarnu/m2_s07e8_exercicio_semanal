@@ -1,1 +1,23 @@
-<p>login works!</p>
+<div class="login">
+  <form [formGroup]="formLogin" (ngSubmit)="login()">
+    <fieldset>
+      <label>E-mail *</label>
+      <input type="text" formControlName="email" />
+      <div *ngIf="isFieldInvalid('email')">
+        <span>Preenchimento obrigatório</span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <label>Senha *</label>
+      <input type="password" formControlName="senha" />
+      <div *ngIf="isFieldInvalid('senha')">
+        <span>Preenchimento obrigatório</span>
+      </div>
+    </fieldset>
+
+    <div class="botoes">
+      <button type="submit" class="login" [disabled]="formLogin.invalid">Login</button>
+      <button type="button" class="recuperarSenha" (click)="recuperarSenha()">Recuperar Senha</button>
+    </div>
+  </form>
+</div>
