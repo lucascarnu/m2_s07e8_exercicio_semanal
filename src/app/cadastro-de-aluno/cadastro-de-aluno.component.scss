@@ -1,0 +1,85 @@
+.cadastro-aluno {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f9fc;
+
+  form {
+    border: 1px solid #e0e6ed;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 32px 24px;
+    background-color: #ffffff;
+    max-width: 400px;
+    width: 100%;
+
+    fieldset {
+      border: none;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+
+      label {
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      input,
+      select {
+        padding: 8px 12px;
+        border: 1px solid #d1d9e6;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+
+        &:focus {
+          border-color: #a0c4ff;
+          outline: none;
+        }
+      }
+
+      div {
+        margin-top: 4px;
+        color: #e74c3c;
+        font-size: 12px;
+      }
+    }
+
+    .botoes {
+      display: flex;
+      justify-content: center;
+      margin-top: 18px;
+
+      button {
+        width: 120px;
+        height: 40px;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.05);
+        }
+
+        &:disabled {
+          cursor: not-allowed;
+          background-color: #ccc;
+        }
+      }
+
+      .salvar {
+        border: 2px solid #4a90e2;
+        background-color: #4a90e2;
+        color: #fff;
+
+        &:hover {
+          background-color: #357abd;
+        }
+      }
+    }
+  }
+}

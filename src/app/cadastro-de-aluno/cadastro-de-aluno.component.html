@@ -1,1 +1,46 @@
-<p>cadastro-de-aluno works!</p>
+<div class="cadastro-aluno">
+  <form [formGroup]="formCadastroAluno" (ngSubmit)="salvarAluno()">
+    <fieldset>
+      <label>Nome completo *</label>
+      <input type="text" formControlName="nomeCompleto" />
+      <div *ngIf="isFieldInvalid('nomeCompleto')">
+        <span>Preenchimento obrigatório</span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <label>CPF *</label>
+      <input type="text" formControlName="cpf" />
+      <div *ngIf="isFieldInvalid('cpf')">
+        <span>Preenchimento obrigatório</span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <label>E-mail *</label>
+      <input type="text" formControlName="email" />
+      <div *ngIf="isFieldInvalid('email')">
+        <span>Preenchimento obrigatório</span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <label>Celular *</label>
+      <input type="text" formControlName="celular" />
+      <div *ngIf="isFieldInvalid('celular')">
+        <span>Preenchimento obrigatório</span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <label>Curso *</label>
+      <select formControlName="curso">
+        <option value="" disabled selected>Selecione um curso</option>
+        <option *ngFor="let curso of cursos" [value]="curso">{{ curso }}</option>
+      </select>
+      <div *ngIf="isFieldInvalid('curso')">
+        <span>Preenchimento obrigatório</span>
+      </div>
+    </fieldset>
+
+    <div class="botoes">
+      <button type="submit" class="salvar" [disabled]="formCadastroAluno.invalid">Salvar</button>
+    </div>
+  </form>
+</div>
