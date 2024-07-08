@@ -1,1 +1,34 @@
-<p>listagem-usuarios works!</p>
+<div class="listagem-usuarios">
+  <div class="container">
+    <h2>Lista de Usuários</h2>
+
+    <div class="pesquisa">
+      <input type="text" [(ngModel)]="filtro" placeholder="Pesquisar por nome ou email" (keydown.enter)="pesquisar()" />
+      <button (click)="pesquisar()">Pesquisar</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>E-mail</th>
+          <th>Curso</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuariosFiltrados">
+          <td>{{ usuario.nomeCompleto }}</td>
+          <td>{{ usuario.cpf }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.curso }}</td>
+          <td class="acoes">
+            <button (click)="editarUsuario(usuario)" class="editar">Editar</button>
+            <button (click)="excluirUsuario(usuario)" class="excluir">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

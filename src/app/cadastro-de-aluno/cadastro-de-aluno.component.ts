@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-de-aluno',
@@ -14,7 +14,7 @@ export class CadastroDeAlunoComponent implements OnInit {
   formCadastroAluno!: FormGroup;
   cursos: string[] = ['Curso 1', 'Curso 2', 'Curso 3']; // Lista de cursos para o select
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.formCadastroAluno = new FormGroup({
@@ -23,6 +23,25 @@ export class CadastroDeAlunoComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       celular: new FormControl('', Validators.required),
       curso: new FormControl('', Validators.required),
+    });
+
+    this.route.queryParams.subscribe((params) => {
+      const state = window.history.state;
+      console.log('Estado de navegación:', state); // Verifica los datos del estado de navegación
+
+      if (state && state.usuario) {
+        this.preencherFormulario(state.usuario);
+      }
+    });
+  }
+
+  preencherFormulario(usuario: any) {
+    this.formCadastroAluno.patchValue({
+      nomeCompleto: usuario.nomeCompleto,
+      cpf: usuario.cpf,
+      email: usuario.email,
+      celular: usuario.celular,
+      curso: usuario.curso,
     });
   }
 
@@ -34,7 +53,7 @@ export class CadastroDeAlunoComponent implements OnInit {
   salvarAluno() {
     if (this.formCadastroAluno.valid) {
       const aluno = this.formCadastroAluno.value;
-      this.salvarNoLocalStorage(aluno);
+      this.atualizarLocalStorage(aluno); // Llamada al nuevo método
       console.log('Usuário salvo com sucesso');
       this.router.navigate(['/listagem-usuarios']);
     } else {
@@ -42,9 +61,18 @@ export class CadastroDeAlunoComponent implements OnInit {
     }
   }
 
-  salvarNoLocalStorage(aluno: any) {
-    const alunos = JSON.parse(localStorage.getItem('alunos') || '[]');
-    alunos.push(aluno);
+  atualizarLocalStorage(aluno: any) {
+    let alunos = JSON.parse(localStorage.getItem('alunos') || '[]');
+    const alunoIndex = alunos.findIndex((a: any) => a.cpf === aluno.cpf);
+
+    if (alunoIndex >= 0) {
+      // Actualizar el registro existente
+      alunos[alunoIndex] = aluno;
+    } else {
+      // Agregar un nuevo registro
+      alunos.push(aluno);
+    }
+
     localStorage.setItem('alunos', JSON.stringify(alunos));
   }
 }
