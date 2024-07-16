@@ -1,1 +1,31 @@
-<p>disciplinas works!</p>
+<div class="disciplinas">
+  <div class="container">
+    <h2>Selecionar Aluno</h2>
+    <select [formControl]="selectedAluno">
+      <option value="" disabled selected>Selecione um aluno</option>
+      <option *ngFor="let aluno of alunos" [ngValue]="aluno">{{ aluno.nomeCompleto }}</option>
+    </select>
+
+    <div *ngIf="curso">
+      <h2>Disciplinas do Curso de {{ curso }}</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Semestre</th>
+            <th>Disciplinas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let semestre of semestresKeys">
+            <td class="semestre">{{ semestre }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let disciplina of semestres[semestre]" class="disciplina">{{ disciplina }}</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

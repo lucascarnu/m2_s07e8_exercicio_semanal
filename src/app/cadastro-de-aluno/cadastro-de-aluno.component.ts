@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CadastroDeAlunoComponent implements OnInit {
   formCadastroAluno!: FormGroup;
-  cursos: string[] = ['Curso 1', 'Curso 2', 'Curso 3']; // Lista de cursos para o select
+  cursos: string[] = ['Tecnologia da Informação', 'Administração', 'Marketing'];
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -27,7 +27,7 @@ export class CadastroDeAlunoComponent implements OnInit {
 
     this.route.queryParams.subscribe((params) => {
       const state = window.history.state;
-      console.log('Estado de navegación:', state); // Verifica los datos del estado de navegación
+      console.log('Estado de navegación:', state);
 
       if (state && state.usuario) {
         this.preencherFormulario(state.usuario);
@@ -53,7 +53,7 @@ export class CadastroDeAlunoComponent implements OnInit {
   salvarAluno() {
     if (this.formCadastroAluno.valid) {
       const aluno = this.formCadastroAluno.value;
-      this.atualizarLocalStorage(aluno); // Llamada al nuevo método
+      this.atualizarLocalStorage(aluno);
       console.log('Usuário salvo com sucesso');
       this.router.navigate(['/listagem-usuarios']);
     } else {
