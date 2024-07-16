@@ -1,1 +1,33 @@
-<p>home works!</p>
+<div class="home">
+  <div class="container">
+    <div class="section">
+      <h2>Próximas atividades</h2>
+      <div class="cards">
+        <div *ngFor="let atividade of proximasAtividades" class="card">
+          <h3>{{ atividade.titulo }}</h3>
+          <p>Data: {{ atividade.data }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Minhas disciplinas</h2>
+      <div class="cards">
+        <div *ngFor="let disciplina of minhasDisciplinas" class="card">
+          <h3>{{ disciplina.titulo }}</h3>
+          <p>{{ disciplina.descricao }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Cursos extras</h2>
+      <div class="cards">
+        <div *ngFor="let curso of cursosExtras" class="card">
+          <h3>{{ curso.titulo }}</h3>
+          <p>{{ curso.descricao }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

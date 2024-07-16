@@ -40,7 +40,7 @@ export class ListagemUsuariosComponent implements OnInit {
   }
 
   editarUsuario(usuario: any): void {
-    console.log('Usuario a editar:', usuario); // Verifica los datos del usuario en la consola
+    console.log('Usuario a editar:', usuario);
     this.router.navigate(['/cadastro-aluno'], { state: { usuario } });
   }
 
